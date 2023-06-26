@@ -15,13 +15,13 @@ class StoreVoteAction
 
     public function execute(StoreVoteData $data): Vote
     {
-        $user = User::findOrFail($data->user_id);
+        $user = User::findOrFail($data->userId);
 
         $location = $this->locationService
             ->getLocationDataByIp($data->ipAddress);
 
         return $user->vote()->create([
-            'item_id' => $data->item_id,
+            'item_id' => $data->itemId,
             'ip_address' => $data->ipAddress,
             'country' => $location->countryName,
             'city' => $location->cityName,

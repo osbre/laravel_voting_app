@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Actions\SendVotingReportAction;
 use App\Repositories\DemoItemRepository;
 use App\Repositories\ItemRepository;
 use App\Services\Location\DemoIpLocationService;
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(LocationService::class, function () {
             return new DemoIpLocationService(config('services.decentIpLocationApi.secret'));
         });
+
+        $this->app->when(SendVotingReportAction::class)
+            ->needs('$recipientEmail')
+            ->giveConfig('system.report_recipient_email');
     }
 
     /**

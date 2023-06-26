@@ -29,8 +29,8 @@ class StoreVoteRequest extends FormRequest
     public function toDataObject(): StoreVoteData
     {
         return new StoreVoteData(
-            item_id: $this->validated('item_id'),
-            user_id: $this->user()->id,
+            itemId: $this->validated('item_id'),
+            userId: $this->user()->id,
             ipAddress: $this->ip(),
         );
     }
