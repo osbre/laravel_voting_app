@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import ItemVoteForm from "@/Components/ItemVoteForm.vue";
+
+defineProps<{
+    items: Item[]
+}>()
 </script>
 
 <template>
@@ -16,6 +21,8 @@ import { Head } from '@inertiajs/vue3';
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">You're logged in!</div>
                 </div>
+
+                <ItemVoteForm :items="items" />
             </div>
         </div>
     </AuthenticatedLayout>
